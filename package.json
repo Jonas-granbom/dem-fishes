@@ -7,6 +7,7 @@
     "ngrok": "ngrok http --domain=emsl.ngrok.io 5173",
     "dev": "vite",
     "build": "tsc && vite build",
+    "start": "npx serve dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
