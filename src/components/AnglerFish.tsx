@@ -18,10 +18,11 @@ export function AnglerFish({ scale = 1, index, ...props }) {
 
     const clonedScene = clone(scene);
 
-    const { actions } = useAnimations(animations);
+    const { actions } = useAnimations(animations, visualRef);
     useEffect(() => {
         actions['rigAction.001']?.play();
     }, [actions]);
+
     useFrame(({ clock }) => {
         if (rigidBodyRef.current) {
             if (rigidBodyRef.current) {
