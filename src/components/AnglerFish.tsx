@@ -28,14 +28,14 @@ export function AnglerFish({ scale = 1, index, ...props }) {
             if (rigidBodyRef.current) {
                 const time = clock.getElapsedTime() * 0.1;
                 const distance = 10;
-                const delay = index * 5;
+                const delay = index * 10;
 
                 const x = Math.sin(time - delay) * distance;
                 const y = Math.cos(time - delay) * distance;
 
                 visualRef.current.rotation.x = Math.PI / 2;
 
-                rigidBodyRef.current.setTranslation({ x: x * Math.PI, y: y * Math.PI / 5, z: 0 }, true);
+                rigidBodyRef.current.setTranslation({ x: x * Math.PI * 0.4, y: y * Math.PI / 4, z: 0 }, true);
 
                 const directionAngle = Math.atan2(y, x);
 
