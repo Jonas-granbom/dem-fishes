@@ -25,7 +25,7 @@
   },
   "include": [
     "src"
-  ],
+, "public/Fish2.jsx"  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
