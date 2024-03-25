@@ -14,7 +14,7 @@ function App() {
       <ambientLight intensity={4} />
       <spotLight position={[0, 0, -5]} />
       <Suspense>
-    
+
         <Physics gravity={[0, 0, 0]} interpolate={false} >
           <Aquarium />
 

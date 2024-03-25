@@ -6,19 +6,30 @@ export function Aquarium({ }) {
     const [fishes, setFishes] = useState<any>([]);
 
     useEffect(() => {
-        const initialFishes = [...Array(100)].map((_, index) => ({
+        const initialFishes = [...Array(125)].map((_, index) => ({
             id: index,
-            scale: 0.5,
-            position: index < 50 ? [0, 0, 0] : [0, 5, 5],
+            scale: 0.3,
+            position: offSetPositions(index)
         }));
 
         setFishes(initialFishes);
     }, []);
 
+    const offSetPositions = (index: number): number[] => {
+        if (index < 25) {
+            return [-2, -2, 0];
+        } else if (index > 25 && index < 50) {
+            return [-1, -1, 0];
+
+        } else if (index > 50 && index < 75) {
+            return [0, 0, 0];
+        } else return [1, 1, 0]
+    }
+
     return (
         <>
-            {fishes.map((_, index) => (
-                <AnglerFish key={index} index={index} />
+            {fishes.map((fish, index) => (
+                <AnglerFish index={index} position={fish.position} scale={fish.scale} />
             ))}
 
         </>

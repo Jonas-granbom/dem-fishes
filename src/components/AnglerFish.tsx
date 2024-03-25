@@ -27,7 +27,7 @@ export function AnglerFish({ scale = 1, index, ...props }) {
         if (rigidBodyRef.current) {
             if (rigidBodyRef.current) {
                 const time = clock.getElapsedTime() * 0.1;
-                const distance = 10;
+                const distance = 9;
                 const delay = index * 10;
 
                 const x = Math.sin(time - delay) * distance;
