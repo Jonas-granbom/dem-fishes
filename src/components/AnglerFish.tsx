@@ -23,26 +23,29 @@ export function AnglerFish({ scale = 1, index, ...props }) {
         actions['rigAction.001']?.play();
     }, [actions]);
 
-    useFrame(({ clock }) => {
+    useFrame(({ clock }, delta) => {
+
         if (rigidBodyRef.current) {
-            if (rigidBodyRef.current) {
-                const time = clock.getElapsedTime() * 0.1;
-                const distance = 9;
-                const delay = index * 10;
 
-                const x = Math.sin(time - delay) * distance;
-                const y = Math.cos(time - delay) * distance;
+            const speed = 0.3;
 
-                visualRef.current.rotation.x = Math.PI / 2;
+            const time = clock.getElapsedTime() * speed
+            const distance = 9;
+            const delay = index * 0.1;
 
-                rigidBodyRef.current.setTranslation({ x: x * Math.PI * 0.4, y: y * Math.PI / 4, z: 0 }, true);
+            const x = Math.sin(time - delay) * distance;
+            const y = Math.cos(time - delay) * distance;
 
-                const directionAngle = Math.atan2(y, x);
+            visualRef.current.rotation.x = Math.PI / 2;
 
-                const quaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, directionAngle));
-                rigidBodyRef.current.setRotation({ x: quaternion.x, y: quaternion.y, z: quaternion.z, w: quaternion.w }, true);
-            }
+            rigidBodyRef.current.setTranslation({ x: x * Math.PI * 0.4, y: y * Math.PI / 4 * delta, z: 0 }, true);
+
+            const directionAngle = Math.atan2(y, x);
+
+            const quaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, directionAngle));
+            rigidBodyRef.current.setRotation({ x: quaternion.x, y: quaternion.y, z: quaternion.z, w: quaternion.w }, true);
         }
+
     });
 
     return (
